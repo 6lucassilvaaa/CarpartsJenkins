@@ -23,7 +23,7 @@ pipeline {
         sh 'npm ci --ignore-scripts && npm run lint && npm run test:ci'
         stash name: 'source', includes: '**/*,.dockerignore', excludes: '.git/**,node_modules/**,reports/**'
       }
-      post { always { junit 'reports/junit.xml' } }
+      post { always { script { if (fileExists('reports/junit.xml')) { junit 'reports/junit.xml' } } } }
     }
     stage('Imagem e homologação') {
       when { beforeAgent true; branch 'main' }
