@@ -5,6 +5,8 @@
 - Grupo Azure `rg-carparts-devops`, East US 2.
 - ACR `acrcarparts26179875`, Basic, provisionamento Succeeded.
 - Host confirmado: `acrcarparts26179875-fjh0d9bcetgwgvaw.azurecr.io`.
+- Identidade gerenciada dos apps com **AcrPull apenas no ACR** (atribuição confirmada).
+- Aplicação e arquivos publicados na branch main do GitHub. Os 11 testes HTTP locais passaram e produziram JUnit.
 - API Node 24 demonstrativa e testes HTTP reais locais; saída JUnit gerada.
 - Dockerfile da aplicação, imagem customizada do controller, plugins e JCasC.
 - Jenkinsfile preparado com qualidade, publicação por commit/build, homologação, smoke com verificação de commit, aprovação e promoção do mesmo digest.
@@ -22,7 +24,9 @@ Os arquivos de Jenkins/Docker/Bicep ainda precisam de execução real. Teste loc
 
 ## E4 — Azure e permissões
 
-Concessões ainda não efetuadas. Criar uma identidade do Jenkins com **AcrPush somente no ACR** e **Container Apps Contributor somente no grupo do laboratório**. Sem Owner nem Contributor da assinatura. Criar uma identidade gerenciada separada para os apps, com **AcrPull somente no ACR**. Nenhuma chave de administrador do ACR é necessária.
+A identidade gerenciada dos apps já recebeu AcrPull apenas no ACR. Ainda falta a identidade do Jenkins com **AcrPush somente no ACR** e **Container Apps Contributor somente no grupo do laboratório**. Sem Owner nem Contributor da assinatura. Nenhuma chave de administrador do ACR é necessária.
+
+Docker/Jenkins e os dois apps ainda não foram executados. Os apps dependem de uma imagem real desta aplicação no ACR. Detalhes administrativos e identificadores de autenticação ficam fora deste repositório público; consulte as evidências locais para continuar a configuração.
 
 Se o tenant escolar proibir registro de aplicativos, o administrador deverá permitir/criar a identidade; não ampliar permissões para contornar a regra. Credencial do Jenkins com validade curta e rotação; guardar segredo apenas em Jenkins Credentials, IDs:
 
