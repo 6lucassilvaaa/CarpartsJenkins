@@ -1,0 +1,30 @@
+jenkins:
+  systemMessage: "Carparts — laboratório SENAI; execução somente nos agentes"
+  numExecutors: 0
+  mode: EXCLUSIVE
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "admin"
+          password: "${JENKINS_ADMIN_PASSWORD}"
+  authorizationStrategy:
+    globalMatrix:
+      entries:
+        - user:
+            name: "admin"
+            permissions:
+              - "Overall/Administer"
+  nodes:
+    - permanent:
+        name: "linux-docker-azure"
+        remoteFS: "/home/jenkins/agent"
+        numExecutors: 1
+        labelString: "linux docker azure"
+        mode: EXCLUSIVE
+        launcher:
+          inbound:
+            webSocket: true
+unclassified:
+  location:
+    url: "http://localhost:8080/"

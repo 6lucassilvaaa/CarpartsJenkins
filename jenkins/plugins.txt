@@ -1,0 +1,9 @@
+configuration-as-code
+workflow-aggregator
+git
+github-branch-source
+credentials-binding
+junit
+matrix-auth
+pipeline-stage-view
+pipeline-github
